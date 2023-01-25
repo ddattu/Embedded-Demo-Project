@@ -77,7 +77,10 @@ int main(){
             break;  
 
         case 7:
-            exit(1);
+            char username[100] = "vaibhav";
+            char password[100] = "pass@12334";
+            char *msg = login(username, password);
+            printf("%s", msg);
             break; 
 
         default :

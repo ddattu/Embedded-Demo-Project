@@ -1,75 +1,136 @@
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
-    int frequencyChar(char *str, char searchCharacter);
-    int removeNonAlpha(char *str);
-    int stringlength(char *str);
-    int concatenate(char *str1, char *str2);
-    int stingcopy(char *source, char*destination);
-    void findSubstring(char *source, int from, int n, char *target);
+int frequencyChar(char *str, char *searchCharacter);
+int removeNonAlpha(char *str);
+int stringlength(char *str);
+int concatenate(char *str1, char *str2);
+int stingcopy(char *source, char *destination);
+void findSubstring(char *source, int from, int n, char *target);
+int usernamestringsorting(char *string, char *username);
+int passwordstringsorting(char *string, char *password);
 
-int frequencyChar(char *str, char searchCharacter){
-    char string[1000];
-    strcpy(string,str);
-    int i= 0,count=0;
-    while(string[i]!='\0'){
-        if(string[i]==searchCharacter){
-        count++;
+int frequencyChar(char *str, char *searchCharacter)
+{
+    int i = 0, count = 0;
+    printf("%c\n", *searchCharacter);
+    while (str[i] != '\0')
+    {
+        if (str[i] == *searchCharacter)
+        {
+            count++;
         }
         i++;
     }
     return count;
 }
 
-int stingcopy(char *source, char*destination){
-    int i=0;
-    while(source[i]!='\0'){
+int usernamestringsorting(char *string, char *username)
+{
+    int i = 0, j = 0, cmp;
+    char str1[30];
+    // printf("%s",username);
+    while (string[i] != '\0')
+    {
+        if (string[i] == ':')
+        {
+            while (string[i] != ',')
+            {
+                i++;
+                str1[j] = string[i];
+                j++;
+            }
+            str1[j] = '\0';
+            cmp = strcmp(str1, username);
+        }
+        i++;
+    }
+    return cmp;
+}
+
+int passwordstringsorting(char *string, char *password)
+{
+    int i = 0, j = 0,cmp;
+    char str1[30];
+    // printf("%s",password);
+    while (string[i] != '\0')
+    {
+        if (string[i] == '=')
+        {
+            while (string[i] != '.')
+            {
+                i++;
+                str1[j] = string[i];
+                j++;
+            }
+            str1[j] = '\0';
+            cmp = strcmp(str1, password);
+        }
+        i++;
+    }
+    return cmp;
+}
+
+int stingcopy(char *source, char *destination)
+{
+    int i = 0;
+    while (source[i] != '\0')
+    {
         destination[i] = source[i];
         i++;
     }
-    destination[i]='\0';
+    destination[i] = '\0';
     return 0;
 }
 
-int stringlength(char *str){
-    int i=0;
-    while(str[i]!='\0'){
+int stringlength(char *str)
+{
+    int i = 0;
+    while (str[i] != '\0')
+    {
         i++;
     }
     return i;
 }
 
-int concatenate(char *str1, char *str2){
-    int len=strlen(str1), i=0;
-    while (str2[i]!='\0')
+int concatenate(char *str1, char *str2)
+{
+    int len = strlen(str1), i = 0;
+    while (str2[i] != '\0')
     {
-        str1[len]=str2[i];
+        str1[len] = str2[i];
         i++;
         len++;
     }
     return 0;
 }
 
-void findSubstring(char *source, int from, int n, char *target){
-    int j=0;
-    for (int i=from;i<(from+n);i++){
-        target[j]=source[i];
+void findSubstring(char *source, int from, int n, char *target)
+{
+    int j = 0;
+    for (int i = from; i < (from + n); i++)
+    {
+        target[j] = source[i];
         j++;
     }
-    target[j]='\0';
+    target[j] = '\0';
 }
 
-int removeNonAlpha(char *str){
-    int i=0,j=0;
+int removeNonAlpha(char *str)
+{
+    int i = 0, j = 0;
     char changedstr[1000];
-    while(str[i]!='\0'){
-        if(isalpha(str[i])){
-            changedstr[j]=str[i];
+    while (str[i] != '\0')
+    {
+        if (isalpha(str[i]))
+        {
+            changedstr[j] = str[i];
             j++;
         }
         i++;
+        changedstr[j] = '\0';
     }
-    strcpy(str,changedstr);
+    strcpy(str, changedstr);
     return 0;
 }
