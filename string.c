@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 #include<ctype.h>
+#include<math.h>
 
     int frequencyChar(char *str, char searchCharacter);
     int removeNonAlpha(char *str);
