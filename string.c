@@ -8,8 +8,7 @@ int stringlength(char *str);
 int concatenate(char *str1, char *str2);
 int stingcopy(char *source, char *destination);
 void findSubstring(char *source, int from, int n, char *target);
-int usernamestringsorting(char *string, char *username);
-int passwordstringsorting(char *string, char *password);
+char *signinverification(char *string, char *username, char *password);
 
 int frequencyChar(char *str, char *searchCharacter)
 {
@@ -26,10 +25,12 @@ int frequencyChar(char *str, char *searchCharacter)
     return count;
 }
 
-int usernamestringsorting(char *string, char *username)
+char *signinverification(char *string, char *username, char *password)
 {
-    int i = 0, j = 0, cmp;
+    int i = 0, j = 0, k = 0, cmp = 0;
     char str1[30];
+    char str2[30];
+    char *msg=NULL;
     // printf("%s",username);
     while (string[i] != '\0')
     {
@@ -41,35 +42,44 @@ int usernamestringsorting(char *string, char *username)
                 str1[j] = string[i];
                 j++;
             }
+            j--;
             str1[j] = '\0';
             cmp = strcmp(str1, username);
-        }
-        i++;
-    }
-    return cmp;
-}
-
-int passwordstringsorting(char *string, char *password)
-{
-    int i = 0, j = 0,cmp;
-    char str1[30];
-    // printf("%s",password);
-    while (string[i] != '\0')
-    {
-        if (string[i] == '=')
-        {
-            while (string[i] != '.')
+            // printf("\n%s\n%s\n%d\n", str1, username, cmp);
+            if (cmp == 0)
             {
-                i++;
-                str1[j] = string[i];
-                j++;
+                while (string[i] != '\0')
+                {
+                    if (string[i] == '=')
+                    {
+                        while (string[i] != '.')
+                        {
+                            i++;
+                            str2[k] = string[i];
+                            k++;
+                        }
+                        k--;
+                        str2[k] = '\0';
+                        cmp = strcmp(str2, password);
+                        // printf("\n%s\n%s\n%d", str2, password, cmp);
+                        if (cmp == 0)
+                        {
+                            // memcpy(msg, "login sucessfully");
+                            msg="login sucessfully";
+                        }
+                        else
+                        {
+                            msg="password is incorrect";
+                        }
+                    }
+                    i++;
+                }
             }
-            str1[j] = '\0';
-            cmp = strcmp(str1, password);
         }
         i++;
     }
-    return cmp;
+    // printf("%s",msg);
+    return msg;
 }
 
 int stingcopy(char *source, char *destination)
