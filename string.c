@@ -59,12 +59,11 @@ int concatenate(char *str1, char *str2)
     return 0;
 }
 
-void findSubstring(char *source, int from, int n, char *target)
-{
-    int j = 0;
-    for (int i = from; i < (from + n); i++)
-    {
-        target[j] = source[i];
+void findSubstring(char *source, int from, int n, char *target){
+    int j=0;
+    int i;
+    for (i=from;i<(from+n);i++){
+        target[j]=source[i];
         j++;
     }
     target[j] = '\0';
