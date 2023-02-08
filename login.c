@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <malloc.h>
-#include "string.c"
+#include <string.h>
+#include "login.h"
 
 char *login(char *username, char *password);
+char *signinverification(char *string, char *username, char *password);
+
 
 char *login(char *username, char *password)
 {
@@ -32,4 +35,61 @@ char *login(char *username, char *password)
         }
     }
     return verify;
+}
+
+char *signinverification(char *string, char *username, char *password)
+{
+    int i = 0, j = 0, k = 0, cmp = 0;
+    char str1[30];
+    char str2[30];
+    char *msg=NULL;
+    // printf("%s",username);
+    while (string[i] != '\0')
+    {
+        if (string[i] == ':')
+        {
+            while (string[i] != ',')
+            {
+                i++;
+                str1[j] = string[i];
+                j++;
+            }
+            j--;
+            str1[j] = '\0';
+            cmp = strcmp(str1, username);
+            // printf("\n%s\n%s\n%d\n", str1, username, cmp);
+            if (cmp == 0)
+            {
+                while (string[i] != '\0')
+                {
+                    if (string[i] == '=')
+                    {
+                        while (string[i] != '.')
+                        {
+                            i++;
+                            str2[k] = string[i];
+                            k++;
+                        }
+                        k--;
+                        str2[k] = '\0';
+                        cmp = strcmp(str2, password);
+                        // printf("\n%s\n%s\n%d", str2, password, cmp);
+                        if (cmp == 0)
+                        {
+                            // memcpy(msg, "login sucessfully");
+                            msg="login sucessfully";
+                        }
+                        else
+                        {
+                            msg="password is incorrect";
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
+        i++;
+    }
+    // printf("%s",msg);
+    return msg;
 }

@@ -1,12 +1,14 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include"string.c"
+#include <stdio.h>
+#include <stdlib.h>
+#include "string.h"
+#include "login.h"
+#include "case.c"
 
-int main(){
-    int n,from;
-    char ch;
-    char str[1000];
-    char str1[1000];
+// #include"login.c"
+
+int main()
+{
+
     while (1)
     {
         printf("\n\nWhich operation you want to perform on String : \n\n");
@@ -18,76 +20,47 @@ int main(){
         printf("6 : Find Substring \n");
         printf("7 : Exit \n\n");
         printf("Enter Your Choice :  \n");
-        scanf("%d",&n);
+        scanf("%d", &n);
 
         switch (n)
         {
         case 1:
             printf("Enter a String : ");
-            scanf("%s",&str);
+            scanf("%s", &str);
             fflush(stdin);
             printf("Enter a charcter which you want to count : ");
-            scanf("%c",&ch);
+            scanf("%c", &ch);
             int a = frequencyChar(str, ch);
-            printf("Frquency of entered character %c in a string is %d ",ch,a);
+            printf("Frquency of entered character %c in a string is %d ", ch, a);
             break;
-        
+
         case 2:
-            printf("Enter a String with numeric character : ");
-            scanf("%s",&str);
-            removeNonAlpha(str);
-            printf("%s",str);
+            case2();
             break;
 
         case 3:
-            printf("Enter a String  : ");
-            scanf("%s",&str);
-            int len =stringlength(str);
-            printf("lenght of string is %d ",len);
+            case3();
             break;
 
         case 4:
-            printf("Enter a String1  : ");
-            scanf("%s",&str);
-            fflush(stdin);
-            printf("Enter a String2  : ");
-            scanf("%s",&str1);
-            concatenate(str,str1);
-            printf("%s",str);
-            break;  
+            case4();
+            break;
 
         case 5:
-            printf("Enter a String  : ");
-            scanf("%s",&str);
-            stingcopy(str, str1);
-            printf("%s",str1);
-            break;  
+            case5();
+            break;
 
         case 6:
-            printf("Enter a String  : ");
-            scanf("%s",&str);
-            fflush(stdin);
-            printf("Enter a value from you want  : ");
-            scanf("%d",&from);
-            fflush(stdin);
-            printf("Enter a value upto you want  : ");
-            scanf("%s",&n);
-            findSubstring(str, from ,n, str1);
-            printf("%s",str1);
-            break;  
+            case6();
+            break;
 
         case 7:
-            char username[100] = "vaibhav";
-            char password[100] = "pass@12334";
-            char *msg = login(username, password);
-            printf("%s", msg);
-            break; 
+            case7();
+            break;
 
-        default :
+        default:
             printf("Incorrect choice!! please enter correct choice");
-            break; 
+            break;
         }
     }
-    
 }
-
